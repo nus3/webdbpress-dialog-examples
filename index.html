@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dialog</title>
+  </head>
+  <body>
+    <main class="main">
+      <section class="main-section">
+        <button id="openButton" type="button" class="button top-button">
+          Open modal dialog
+        </button>
+      </section>
+
+      <section class="second-section">Second Section</section>
+    </main>
+
+    <dialog id="modalDialog" class="dialog" style="display: none">
+      <header class="dialog-header">
+        <span class="dialog-header-title">Header</span>
+        <button
+          id="closeButton"
+          type="button"
+          class="dialog-header-close-button"
+        >
+          <ion-icon
+            class="dialog-header-close-icon"
+            name="close-outline"
+            size="large"
+          ></ion-icon>
+        </button>
+      </header>
+      <div class="dialog-content">Message</div>
+      <form class="dialog-footer" method="dialog">
+        <button type="submit" class="button dialog-footer-button" value="ok">
+          Ok
+        </button>
+        <button
+          type="submit"
+          class="button dialog-footer-button"
+          value="cancel"
+        >
+          Cancel
+        </button>
+      </form>
+    </dialog>
+
+    <script type="module" src="/src/main.ts"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+  </body>
+</html>

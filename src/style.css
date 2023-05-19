@@ -1,0 +1,235 @@
+:root {
+  --primary-color: hsl(160 55% 55%);
+  --primary-color-opacity: hsl(160 55% 55% / 0.6);
+  --primary-color-hover-opacity: hsl(160 55% 55% / 0.8);
+  --primary-light: #abf1da;
+  --bg-color: hsl(216 18% 16%);
+  --bg-color-opacity: hsl(216 18% 16% / 0.4);
+  --bg-light-color: hsl(216 10% 24%);
+  --bg-dialog-color: hsl(218 10% 33%);
+  --dialog-shadow: 0px 20px 36px 0px rgba(0, 0, 0, 0.6);
+  --button-shadow: 0px 6px 11px 1px rgba(31, 37, 45, 0.6);
+  --text-color: hsl(0 0% 93%);
+  --dialog-header-border-color: hsl(217 10% 60%);
+}
+
+body {
+  display: grid;
+  place-items: center;
+  background-color: var(--bg-color);
+  margin: 0;
+  color: var(--text-color);
+  height: 100vh;
+}
+
+.main {
+  width: 100%;
+  height: 100%;
+}
+
+.main-section {
+  padding: 0 16rem;
+  padding-bottom: 0;
+  height: 100%;
+  background-image: linear-gradient(
+    45deg,
+    hsl(216deg 18% 16%) 1%,
+    hsl(216deg 17% 17%) 43%,
+    hsl(216deg 16% 18%) 50%,
+    hsl(216deg 15% 19%) 51%,
+    hsl(216deg 14% 20%) 51%,
+    hsl(217deg 13% 21%) 49%,
+    hsl(217deg 12% 22%) 49%,
+    hsl(217deg 12% 23%) 50%,
+    hsl(217deg 11% 24%) 57%,
+    hsl(217deg 10% 25%) 99%
+  );
+}
+
+.second-section {
+  display: grid;
+  place-items: center;
+  height: 200px;
+  background-color: var(--bg-color);
+}
+
+.button {
+  border-radius: 0.25rem;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--primary-color);
+  background-color: var(--primary-color-opacity);
+  cursor: pointer;
+  color: inherit;
+  box-shadow: var(--button-shadow);
+}
+
+.button:hover {
+  background-color: var(--primary-color-hover-opacity);
+}
+
+.top-button {
+  font-size: 2.25rem;
+  font-weight: bold;
+  min-width: 10rem;
+  padding: 1rem;
+  margin-top: 8rem;
+}
+
+.dialog {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 0.5rem;
+  background-color: var(--bg-dialog-color);
+  color: inherit;
+  border: none;
+  box-shadow: var(--dialog-shadow);
+  width: 500px;
+  height: 300px;
+  padding: 1rem;
+  position: fixed;
+  inset-inline: 0;
+  inset-block: 0;
+  margin: auto;
+}
+
+.dialog:not([open]) {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .dialog {
+    animation-name: fadeOut, zoomOut;
+    animation-fill-mode: forwards;
+    animation-duration: 200ms;
+    animation-timing-function: ease-out;
+  }
+
+  .dialog[open] {
+    animation-name: fadeIn, zoomIn;
+    animation-fill-mode: forwards;
+    animation-duration: 200ms;
+    animation-timing-function: ease-out;
+  }
+
+  .button {
+    transition: outline-offset 0.1s ease;
+  }
+  .button:not(:active):focus-visible {
+    outline-offset: 5px;
+  }
+
+  .dialog-header-close-button {
+    transition: outline-offset 0.1s ease;
+  }
+  .dialog-header-close-button:not(:active):focus-visible {
+    outline-offset: 5px;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.6);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes zoomOut {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0.6);
+  }
+}
+
+.dialog::backdrop {
+  backdrop-filter: blur(8px);
+}
+
+.dialog-header {
+  display: grid;
+  grid-template-columns: 1fr 40px;
+  place-items: center stretch;
+  height: 40px;
+  padding-bottom: 0.6rem;
+  border-bottom: solid 1px var(--dialog-header-border-color);
+}
+
+.dialog-header-title {
+  font-size: 1.4rem;
+}
+
+.dialog-header-close-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+}
+
+.dialog-header-close-button:hover {
+  background-color: var(--bg-color-opacity);
+}
+
+.dialog-header-close-icon {
+  color: var(--text-color);
+}
+
+.dialog-content {
+  display: grid;
+  place-items: center;
+  padding: 1.6rem 0;
+  height: 200px;
+  font-size: 1.8rem;
+}
+
+.dialog-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 0.6rem;
+}
+
+.dialog-footer-button {
+  font-size: 1.4rem;
+  min-width: 4rem;
+  padding: 0.6rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  padding: 1.6rem;
+  padding-bottom: 0;
+}
+
